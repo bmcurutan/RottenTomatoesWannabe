@@ -9,9 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
-
+    @IBOutlet weak var moviesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        moviesTableView.rowHeight = 200
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,6 +28,5 @@ class ViewController: UIViewController, UITableViewDataSource {
 }
 
 class MyCell: UITableViewCell {
-    
     @IBOutlet weak var myCustomlabel: UILabel!
 }
