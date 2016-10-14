@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MovieListViewController.swift
 //  RottenTomatoesWannabe
 //
 //  Created by Bianca Curutan on 10/13/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class MovieListViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var moviesTableView: UITableView!
     
     override func viewDidLoad() {

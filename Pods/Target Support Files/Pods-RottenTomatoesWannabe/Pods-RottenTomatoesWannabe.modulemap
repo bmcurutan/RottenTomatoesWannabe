@@ -1,0 +1,6 @@
+framework module Pods_RottenTomatoesWannabe {
+  umbrella header "Pods-RottenTomatoesWannabe-umbrella.h"
+
+  export *
+  module * { export * }
+}

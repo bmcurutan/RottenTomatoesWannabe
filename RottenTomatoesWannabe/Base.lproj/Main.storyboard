@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Movie List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RottenTomatoesWannabe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MovieListViewController" customModule="RottenTomatoesWannabe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a2M-TN-blV" id="DiV-Oe-bEL">
-                                            <frame key="frameInset" width="342" height="129"/>
+                                            <frame key="frameInset" width="342" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="My Custom Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iH4-0i-Le2">
@@ -42,7 +42,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ptg-og-yEz"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Yaa-05-6HY"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -50,18 +50,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="vS6-ym-u9p"/>
                     <connections>
-                        <outlet property="moviesTableView" destination="T7j-9f-pBR" id="4qf-oQ-cBZ"/>
+                        <outlet property="moviesTableView" destination="T7j-9f-pBR" id="LeE-fp-jIz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="674.5" y="152.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Details View Controller-->
         <scene sceneID="1Mi-Xq-BZO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Xk-ox-QuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="0s9-s3-Qxj" sceneMemberID="viewController">
+                <viewController id="0s9-s3-Qxj" customClass="MovieDetailsViewController" customModule="RottenTomatoesWannabe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WpC-1f-d29">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,6 +68,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5yG-7J-RL3"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Xk-ox-QuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1192" y="122"/>
         </scene>
