@@ -38,12 +38,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exampleCell") as! MyCell
-        cell.myCustomlabel.text = "Row \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as! MovieCell
+        cell.titleLabel.text = "Row \(indexPath.row)"
         return cell
     }
-}
-
-class MyCell: UITableViewCell {
-    @IBOutlet weak var myCustomlabel: UILabel!
 }
