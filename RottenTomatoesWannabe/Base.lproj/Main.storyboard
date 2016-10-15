@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a2M-TN-blV" id="DiV-Oe-bEL">
-                                            <frame key="frameInset" width="342" height="129"/>
+                                            <frame key="frameInset" width="342" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5oz-nh-y9V">
@@ -93,7 +93,7 @@
         <!--Movie Details View Controller-->
         <scene sceneID="1Mi-Xq-BZO">
             <objects>
-                <viewController id="0s9-s3-Qxj" customClass="MovieDetailsViewController" customModule="RottenTomatoesWannabe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="movieDetailsViewController" id="0s9-s3-Qxj" customClass="MovieDetailsViewController" customModule="RottenTomatoesWannabe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WpC-1f-d29">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

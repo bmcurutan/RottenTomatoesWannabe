@@ -11,7 +11,7 @@ import MBProgressHUD
 import ReachabilitySwift
 import UIKit
 
-class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate /*, UIViewControllerPreviewingDelegate*/ {
     
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
@@ -37,6 +37,10 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         self.title = typeTitle
+        
+        /*if (traitCollection.forceTouchCapability == .available) {
+            registerForPreviewing(with: self, sourceView: view)
+        }*/
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -129,6 +133,24 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.moviesTableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    /*func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if let indexPath = self.moviesTableView?.indexPathForRow(at: location) {
+            if let cell = self.moviesTableView?.cellForRow(at: indexPath) {
+                previewingContext.sourceRect = cell.frame
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let movieDetailsViewController = storyboard.instantiateViewController(withIdentifier: "movieDetailsViewController") as? MovieDetailsViewController {
+                    return movieDetailsViewController
+                }
+                
+            }
+        }
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }*/
     
     // MARK: - Navigation
     
