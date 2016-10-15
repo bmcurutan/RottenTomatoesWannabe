@@ -2,7 +2,7 @@
 
 Rotten Tomatoes Wannabe is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 2 hours spent in total
+Time spent: 5 hours spent in total
 
 ## User Stories
 
@@ -30,6 +30,7 @@ The following **additional** features are implemented:
 - [x] Launch screen
 - [ ] Add additional movie details page
 - [ ] Zoomable photo view
+- [x] Added Upcoming tab
 
 ## Video Walkthrough
 

@@ -26,7 +26,7 @@
                                 <frame key="frameInset" minX="16" minY="227" width="343" height="383"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="60"/>
-                                <color key="textColor" red="0.090196078431372548" green="0.10588235294117647" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.098039215686274508" green="0.11372549019607843" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
