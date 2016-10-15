@@ -15,6 +15,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     var movies: [NSDictionary]?
     
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         task.resume()
     }
     
+    // MARK: - UITableViewDataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let movies = self.movies {
             return movies.count
@@ -49,16 +53,30 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as! MovieCell
         if let movies = self.movies {
             let movie = movies[indexPath.row]
+            
             let title = movie["original_title"] as! String
             let overview = movie["overview"] as! String
-            let baseUrl = "https://image.tmdb.org/t/p/w342";
-            let posterPath = movie["poster_path"] as! String
-            let posterUrl = NSURL(string: baseUrl + posterPath)
-            
             cell.titleLabel.text = title
             cell.overviewLabel.text = overview
-            cell.posterImageView.setImageWith(posterUrl as! URL)
+            
+            let baseUrl = "https://image.tmdb.org/t/p/w342";
+            if let posterPath = movie["poster_path"] as? String {
+                let posterUrl = NSURL(string: baseUrl + posterPath)
+                cell.posterImageView.setImageWith(posterUrl as! URL)
+            }
         }
         return cell
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        let indexPath = self.moviesTableView.indexPath(for: cell)
+        if let movies = self.movies {
+            let movie = movies[indexPath!.row]
+            let detailViewController = segue.destination as! MovieDetailsViewController
+            detailViewController.movie = movie
+        }
     }
 }

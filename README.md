@@ -26,7 +26,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [ ] 3D touch to preview movie details screen from list screen
+- [ ] Launch screen
+- [ ] Add ratings
 
 ## Video Walkthrough
 

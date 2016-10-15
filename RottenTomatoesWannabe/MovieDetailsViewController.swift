@@ -10,10 +10,25 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var posterImageView: UIImageView!
+    
+    var movie: NSDictionary!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let title = movie["original_title"] as! String
+        let overview = movie["overview"] as! String
+        self.titleLabel.text = title
+        self.overviewLabel.text = overview
+        
+        let baseUrl = "https://image.tmdb.org/t/p/w342";
+        if let posterPath = movie["poster_path"] as? String {
+            let posterUrl = NSURL(string: baseUrl + posterPath)
+            self.posterImageView.setImageWith(posterUrl as! URL)
+        }
     }
 
     override func didReceiveMemoryWarning() {
