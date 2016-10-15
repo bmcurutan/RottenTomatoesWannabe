@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-RottenTomatoesWannabe.xcscheme</key>
+		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyJSON.xcscheme</key>
+		<key>Pods-RottenTomatoesWannabe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,12 +27,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26133F3068E3FEB1527764C6E71DBD94</key>
+		<key>C12FA4046D9335DCFC7CEBE86E41F6CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D2A9321534A3EA21C3B5212745E2BF14</key>
+		<key>DBA6001481CEA0EBA031CC5C94508FAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

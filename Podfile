@@ -5,7 +5,7 @@ target "RottenTomatoesWannabe" do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Tumblr
-  pod "AFNetworking" 
-  pod "SwiftyJSON"
+  # Pods for RottenTomatoesWannabe
+  pod "AFNetworking"
+  pod "MBProgressHUD"
 end

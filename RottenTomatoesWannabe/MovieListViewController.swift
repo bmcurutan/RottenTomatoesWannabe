@@ -6,8 +6,9 @@
 //  Copyright © 2016 Bianca Curutan. All rights reserved.
 //
 
-import UIKit
 import AFNetworking
+import MBProgressHUD
+import UIKit
 
 class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -33,9 +34,13 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 delegateQueue:OperationQueue.main
             )
             
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
                         self.movies = responseDictionary["results"] as? [NSDictionary]
                         self.moviesTableView.reloadData()
                     }
@@ -57,7 +62,10 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 delegateQueue:OperationQueue.main
             )
             
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.moviesTableView.reloadData()
                 refreshControl.endRefreshing()	
             });
