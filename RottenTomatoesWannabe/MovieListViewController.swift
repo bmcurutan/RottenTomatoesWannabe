@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import AFNetworking
 
-class MovieListViewController: UIViewController, UITableViewDataSource {
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     @IBOutlet weak var moviesTableView: UITableView!
+    
+    var movies: [NSDictionary]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moviesTableView.rowHeight = 200
         
-        let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
         let request = URLRequest(url: url!)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
@@ -26,7 +30,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource {
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: { (dataOrNil, response, error) in
             if let data = dataOrNil {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                    NSLog("response: \(responseDictionary)")
+                    self.movies = responseDictionary["results"] as? [NSDictionary]
+                    self.moviesTableView.reloadData()
                 }
             }
         });
@@ -34,12 +39,26 @@ class MovieListViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let movies = self.movies {
+            return movies.count
+        }
+        return 0;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as! MovieCell
-        cell.titleLabel.text = "Row \(indexPath.row)"
+        if let movies = self.movies {
+            let movie = movies[indexPath.row]
+            let title = movie["original_title"] as! String
+            let overview = movie["overview"] as! String
+            let baseUrl = "https://image.tmdb.org/t/p/w342";
+            let posterPath = movie["poster_path"] as! String
+            let posterUrl = NSURL(string: baseUrl + posterPath)
+            
+            cell.titleLabel.text = title
+            cell.overviewLabel.text = overview
+            cell.posterImageView.setImageWith(posterUrl as! URL)
+        }
         return cell
     }
 }
