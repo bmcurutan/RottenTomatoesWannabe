@@ -17,23 +17,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        // Navigation bar
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.tintColor = UIColor.white
+        navigationBarAppearance.barTintColor = UIColor(red:0.00, green:0.47, blue:0.42, alpha:1.0)
+        navigationBarAppearance.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        
+        // Tab bar
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MovieListViewController
         nowPlayingViewController.typeEndpoint = "now_playing"
+        nowPlayingViewController.typeTitle = "Now Playing Movies"
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "now_playing")
         
         let topRatedNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
         let topRatedViewController = topRatedNavigationController.topViewController as! MovieListViewController
         topRatedViewController.typeEndpoint = "top_rated"
+        topRatedViewController.typeTitle = "Top Rated Movies"
         topRatedNavigationController.tabBarItem.title = "Top Rated"
         topRatedNavigationController.tabBarItem.image = UIImage(named: "top_rated")
 
         let upcomingNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
         let upcomingViewController = upcomingNavigationController.topViewController as! MovieListViewController
         upcomingViewController.typeEndpoint = "upcoming"
+        upcomingViewController.typeTitle = "Upcoming Movies"
         upcomingNavigationController.tabBarItem.title = "Upcoming"
         upcomingNavigationController.tabBarItem.image = UIImage(named: "upcoming")
         

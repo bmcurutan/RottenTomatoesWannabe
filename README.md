@@ -31,6 +31,7 @@ The following **additional** features are implemented:
 - [ ] Add additional movie details page
 - [ ] Zoomable photo view
 - [x] Added Upcoming tab
+- [x] Added titles to the movie list pages
 
 ## Video Walkthrough
 

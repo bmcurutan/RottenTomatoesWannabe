@@ -25,6 +25,7 @@ class MovieDetailsViewController: UIViewController {
 
         let title = movie["original_title"] as! String
         let overview = movie["overview"] as! String
+        self.title = title
         self.titleLabel.text = title
         self.overviewLabel.text = overview
         self.overviewLabel.sizeToFit()

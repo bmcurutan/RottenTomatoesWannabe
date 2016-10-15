@@ -16,9 +16,12 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     var movies: [NSDictionary]?
     var typeEndpoint: String?
+    var typeTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = typeTitle
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
