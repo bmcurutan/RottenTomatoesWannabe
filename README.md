@@ -28,7 +28,8 @@ The following **additional** features are implemented:
 
 - [ ] 3D touch to preview movie details screen from list screen
 - [ ] Launch screen
-- [ ] Add ratings
+- [ ] Add additional movie details page
+- [ ] Zoomable photo view
 
 ## Video Walkthrough
 
