@@ -27,7 +27,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ ] 3D touch to preview movie details screen from list screen
-- [ ] Launch screen
+- [x] Launch screen
 - [ ] Add additional movie details page
 - [ ] Zoomable photo view
 
