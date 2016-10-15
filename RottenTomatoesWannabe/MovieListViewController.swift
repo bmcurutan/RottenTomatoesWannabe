@@ -24,41 +24,45 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         self.moviesTableView.insertSubview(refreshControl, at: 0)
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string:"https://api.themoviedb.org/3/movie/\(typeEndpoint)?api_key=\(apiKey)")
-        let request = URLRequest(url: url!)
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
-        
-        let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-            if let data = dataOrNil {
-                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                    self.movies = responseDictionary["results"] as? [NSDictionary]
-                    self.moviesTableView.reloadData()
+        if let endpoint = typeEndpoint {
+            let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+            let request = URLRequest(url: url!)
+            let session = URLSession(
+                configuration: URLSessionConfiguration.default,
+                delegate:nil,
+                delegateQueue:OperationQueue.main
+            )
+            
+            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
+                        self.movies = responseDictionary["results"] as? [NSDictionary]
+                        self.moviesTableView.reloadData()
+                    }
                 }
-            }
-        });
-        task.resume()
+            });
+            task.resume()
+        }
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string:"https://api.themoviedb.org/3/movie/\(typeEndpoint)?api_key=\(apiKey)")
-        let request = URLRequest(url: url!)
+        if let endpoint = typeEndpoint {
+            let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+            let request = URLRequest(url: url!)
 
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
-        
-        let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-            self.moviesTableView.reloadData()
-            refreshControl.endRefreshing()	
-        });
-        task.resume()
+            let session = URLSession(
+                configuration: URLSessionConfiguration.default,
+                delegate:nil,
+                delegateQueue:OperationQueue.main
+            )
+            
+            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
+                self.moviesTableView.reloadData()
+                refreshControl.endRefreshing()	
+            });
+            task.resume()
+        }
     }
     
     // MARK: - UITableViewDataSource
