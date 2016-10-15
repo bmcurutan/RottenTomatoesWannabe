@@ -102,7 +102,13 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as! MovieCell
+        let cell = tableView.dequeueReusableCell(withIdentifier:"movieCell") as! MovieCell
+
+        // Cell selection style
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red:0.34, green:0.41, blue:0.18, alpha:0.5)
+        cell.selectedBackgroundView = backgroundView
+        
         if let movies = self.movies {
             let movie = movies[indexPath.row]
             
@@ -118,6 +124,10 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.moviesTableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
