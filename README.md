@@ -32,6 +32,7 @@ The following **additional** features are implemented:
 - [ ] Zoomable photo view
 - [x] Added Upcoming tab
 - [x] Added titles to the movie list pages
+- [ ] Customize the tab bar  
 
 ## Video Walkthrough
 
