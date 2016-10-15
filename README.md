@@ -2,7 +2,7 @@
 
 Rotten Tomatoes Wannabe is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 5 hours spent in total
+Time spent: 6 hours spent in total (5 hours for the required functionality)
 
 ## User Stories
 
@@ -28,7 +28,7 @@ The following **additional** features are implemented:
 
 - [ ] 3D touch to preview movie details screen from list screen
 - [x] Launch screen
-- [ ] Add additional movie details page
+- [ ] Added additional movie details on the individual movie pages
 - [ ] Zoomable photo view (Lab 1)
 - [x] Added Upcoming tab
 - [x] Added titles to the movie list pages
@@ -45,7 +45,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+- I faced some UI challenges when running the app on devices of difference sizes. For example, sometimes the images were too small and left white space to the right and bottom of the image, and other times the images were stretched too large and became distorted.
+- I encountered some issues with detecting the network connection, but then eventually found a CocoaPod solution to use rather than building everything from scratch
 
 ## License
 
