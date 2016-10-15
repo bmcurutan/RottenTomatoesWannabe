@@ -13,6 +13,7 @@ import UIKit
 class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var moviesTableView: UITableView!
+    @IBOutlet weak var errorView: UIView!
     
     var movies: [NSDictionary]?
     var typeEndpoint: String?

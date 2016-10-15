@@ -59,19 +59,19 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HgN-om-wtI"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="ycL-oF-fMG">
-                                <frame key="frameInset" minY="275" width="375" height="44"/>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="ycL-oF-fMG" userLabel="Error View">
+                                <frame key="frameInset" minY="64" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Networking Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LGd-8A-Izb">
-                                        <frame key="frameInset" minX="166" minY="12" width="130" height="21"/>
+                                        <frame key="frameInset" minX="142" minY="12" width="130" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="error" id="dL9-fw-4sn">
-                                        <frame key="frameInset" minX="17" minY="5" width="32" height="32"/>
+                                        <frame key="frameInset" minX="102" minY="6" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -82,6 +82,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="vS6-ym-u9p"/>
                     <connections>
+                        <outlet property="errorView" destination="ycL-oF-fMG" id="xnx-uo-YQt"/>
                         <outlet property="moviesTableView" destination="T7j-9f-pBR" id="LeE-fp-jIz"/>
                     </connections>
                 </viewController>
