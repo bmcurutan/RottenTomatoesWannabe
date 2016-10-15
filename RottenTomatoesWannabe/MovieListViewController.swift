@@ -8,6 +8,7 @@
 
 import AFNetworking
 import MBProgressHUD
+import ReachabilitySwift
 import UIKit
 
 class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -18,6 +19,19 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     var movies: [NSDictionary]?
     var typeEndpoint: String?
     var typeTitle: String?
+    var reachability: Reachability = Reachability()!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.checkForNetwork()
+    }
+    
+    func checkForNetwork() {
+        if reachability.isReachable {
+            self.errorView.isHidden = true // Hide Network Error message
+        } else {
+            self.errorView.isHidden = false// Display Network Error message
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +69,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
+        self.checkForNetwork()
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         if let endpoint = typeEndpoint {
             let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")

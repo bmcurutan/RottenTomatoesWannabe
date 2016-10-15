@@ -8,4 +8,5 @@ target "RottenTomatoesWannabe" do
   # Pods for RottenTomatoesWannabe
   pod "AFNetworking"
   pod "MBProgressHUD"
+  pod "ReachabilitySwift"
 end

@@ -11,7 +11,7 @@ The following **required** functionality is completed:
 - [x] User can view a list of movies currently playing in theaters. Poster images load asynchronously.
 - [x] User can view movie details by tapping on a cell.
 - [x] User sees loading state while waiting for the API.
-- [ ] User sees an error message when there is a network error.
+- [x] User sees an error message when there is a network error.
 - [x] User can pull to refresh the movie list.
 
 The following **optional** features are implemented:
@@ -22,17 +22,18 @@ The following **optional** features are implemented:
 - [ ] All images fade in.
 - [ ] For the large poster, load the low-res image first, switch to high-res when complete.
 - [ ] Customize the highlight and selection effect of the cell.
-- [ ] Customize the navigation bar.
+- [x] Customize the navigation bar.
 
 The following **additional** features are implemented:
 
 - [ ] 3D touch to preview movie details screen from list screen
 - [x] Launch screen
 - [ ] Add additional movie details page
-- [ ] Zoomable photo view
+- [ ] Zoomable photo view (Lab 1)
 - [x] Added Upcoming tab
 - [x] Added titles to the movie list pages
 - [ ] Customize the tab bar  
+- [ ] Infinite scrolling (Lab 1)
 
 ## Video Walkthrough
 
