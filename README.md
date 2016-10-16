@@ -29,11 +29,11 @@ The following **additional** features are implemented:
 - [ ] 3D touch to preview movie details screen from list screen
 - [x] Launch screen
 - [x] Added additional movie details on the individual movie pages
-- [ ] Zoomable photo view (Lab 1)
+- [x] Zoomable photo view (Lab 1)
 - [x] Added Upcoming tab
 - [x] Added titles to the movie list pages
 - [x] Customize the tab bar  
-- [ ] Infinite scrolling (Lab 1)
+- [x] Infinite scrolling (Lab 1)
 
 ## Video Walkthrough
 
