@@ -20,6 +20,9 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     var typeEndpoint: String?
     var typeTitle: String?
     var reachability: Reachability = Reachability()!
+    var isMoreDataLoading = false
+    var page: Int = 1
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     override func viewWillAppear(_ animated: Bool) {
         self.checkForNetwork()
@@ -42,9 +45,16 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             registerForPreviewing(with: self, sourceView: view)
         }*/
         
+        // Pull to Refresh refresh control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         self.moviesTableView.insertSubview(refreshControl, at: 0)
+        
+        // Infinite Loading loading icon
+        let tableFooterView: UIView = UIView(frame: CGRect(x:0, y:0, width:UIScreen.main.bounds.size.width, height:50))
+        loadingView.center = tableFooterView.center
+        tableFooterView.addSubview(loadingView)
+        self.moviesTableView.tableFooterView = tableFooterView
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         if let endpoint = typeEndpoint {
@@ -88,9 +98,15 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
             let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                self.moviesTableView.reloadData()
-                refreshControl.endRefreshing()	
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        self.movies = responseDictionary["results"] as? [NSDictionary]
+                        self.moviesTableView.reloadData()
+                        refreshControl.endRefreshing()
+                    }
+                }
             });
             task.resume()
         }
@@ -151,6 +167,60 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
     }*/
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = self.moviesTableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - self.moviesTableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && self.moviesTableView.isDragging) {
+                loadingView.startAnimating()
+                isMoreDataLoading = true
+                loadMoreData()
+            }
+        }
+    }
+    
+    func loadMoreData() {
+        // Increment page
+        page += 1
+        
+        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        if let endpoint = typeEndpoint {
+            let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)&page=\(page)")
+            let request = URLRequest(url: url!)
+            
+            // Configure session so that completion handler is executed on main UI thread
+            let session = URLSession(
+                configuration: URLSessionConfiguration.default,
+                delegate:nil,
+                delegateQueue:OperationQueue.main
+            )
+        
+            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
+                        // Update flag
+                        self.isMoreDataLoading = false
+                        
+                        // Stop the loading indicator
+                        self.loadingView.stopAnimating()
+                        
+                        // Use the new data to update the data source
+                        for dict in responseDictionary["results"] as! [NSDictionary] {
+                            self.movies?.append(dict)
+                        }
+                        
+                        // Reload the tableView now that there is new data
+                        self.moviesTableView.reloadData()
+                    }
+                }
+            });
+            task.resume()
+        }
+    }
     
     // MARK: - Navigation
     
