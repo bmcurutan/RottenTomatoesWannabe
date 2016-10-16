@@ -32,9 +32,10 @@ class MovieDetailsViewController: UIViewController {
         
         self.title = title
         self.titleLabel.text = title
+        self.titleLabel.sizeToFit()
         self.ratingLabel.text = String(rating)
         self.releaseDateLabel.text = releaseDate
-        self.overviewLabel.text = overview
+        self.overviewLabel.text = "Synopsis: \(overview)"
         self.overviewLabel.sizeToFit()
         
         let baseUrl = "https://image.tmdb.org/t/p/w342";
@@ -44,14 +45,10 @@ class MovieDetailsViewController: UIViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let photoViewController = segue.destination as! PhotoViewController
+            photoViewController.movie = movie
     }
-    */
-
 }

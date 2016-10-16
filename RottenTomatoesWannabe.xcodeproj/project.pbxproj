@@ -17,6 +17,7 @@
 		671A29051DB0BF0C00DAA08E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671A29041DB0BF0C00DAA08E /* MovieCell.swift */; };
 		671A29081DB0BFEE00DAA08E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671A29071DB0BFEE00DAA08E /* Movie.swift */; };
 		6752E8151DB151DB00A88030 /* NetworkUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6752E8141DB151DB00A88030 /* NetworkUtilities.swift */; };
+		67970D381DB2FEA4009EBE3B /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67970D371DB2FEA4009EBE3B /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		671A29041DB0BF0C00DAA08E /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieCell.swift; path = ../MovieCell.swift; sourceTree = "<group>"; };
 		671A29071DB0BFEE00DAA08E /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = ../Movie.swift; sourceTree = "<group>"; };
 		6752E8141DB151DB00A88030 /* NetworkUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUtilities.swift; sourceTree = "<group>"; };
+		67970D371DB2FEA4009EBE3B /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = ../PhotoViewController.swift; sourceTree = "<group>"; };
 		7E62FE6B6F43F6FF11F9A5FD /* Pods-RottenTomatoesWannabe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoesWannabe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoesWannabe/Pods-RottenTomatoesWannabe.debug.xcconfig"; sourceTree = "<group>"; };
 		B47A5B6717E7CA0336771C58 /* Pods_RottenTomatoesWannabe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RottenTomatoesWannabe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1411BB0E891F32F6406CED /* Pods-RottenTomatoesWannabe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoesWannabe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoesWannabe/Pods-RottenTomatoesWannabe.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				6714A6681DB0BCAA00F975F3 /* MovieDetailsViewController.swift */,
 				67060C4A1DAFDA600028D65A /* MovieListViewController.swift */,
+				67970D371DB2FEA4009EBE3B /* PhotoViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				6752E8151DB151DB00A88030 /* NetworkUtilities.swift in Sources */,
 				67060C491DAFDA600028D65A /* AppDelegate.swift in Sources */,
 				671A29051DB0BF0C00DAA08E /* MovieCell.swift in Sources */,
+				67970D381DB2FEA4009EBE3B /* PhotoViewController.swift in Sources */,
 				6714A6691DB0BCAA00F975F3 /* MovieDetailsViewController.swift in Sources */,
 				671A29081DB0BFEE00DAA08E /* Movie.swift in Sources */,
 			);

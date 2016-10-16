@@ -119,7 +119,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             let title = movie["original_title"] as! String
             let overview = movie["overview"] as! String
             cell.titleLabel.text = title
-            cell.overviewLabel.text = overview
+            cell.overviewLabel.text = "Synopsis: \(overview)"
             
             let baseUrl = "https://image.tmdb.org/t/p/w342";
             if let posterPath = movie["poster_path"] as? String {

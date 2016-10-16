@@ -21,7 +21,7 @@ The following **optional** features are implemented:
 - [ ] Add a search bar.
 - [ ] All images fade in.
 - [ ] For the large poster, load the low-res image first, switch to high-res when complete.
-- [ ] Customize the highlight and selection effect of the cell.
+- [x] Customize the highlight and selection effect of the cell.
 - [x] Customize the navigation bar.
 
 The following **additional** features are implemented:
@@ -32,7 +32,7 @@ The following **additional** features are implemented:
 - [ ] Zoomable photo view (Lab 1)
 - [x] Added Upcoming tab
 - [x] Added titles to the movie list pages
-- [ ] Customize the tab bar  
+- [x] Customize the tab bar  
 - [ ] Infinite scrolling (Lab 1)
 
 ## Video Walkthrough
