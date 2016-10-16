@@ -11,6 +11,8 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -24,9 +26,14 @@ class MovieDetailsViewController: UIViewController {
         self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: self.infoView.frame.origin.y + self.infoView.frame.size.height)
 
         let title = movie["original_title"] as! String
+        let rating = movie["vote_average"] as! Double
+        let releaseDate = movie["release_date"] as! String // TODO, long date format
         let overview = movie["overview"] as! String
+        
         self.title = title
         self.titleLabel.text = title
+        self.ratingLabel.text = String(rating)
+        self.releaseDateLabel.text = releaseDate
         self.overviewLabel.text = overview
         self.overviewLabel.sizeToFit()
         
@@ -35,11 +42,6 @@ class MovieDetailsViewController: UIViewController {
             let posterUrl = NSURL(string: baseUrl + posterPath)
             self.posterImageView.setImageWith(posterUrl as! URL)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     /*

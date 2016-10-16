@@ -28,7 +28,7 @@ The following **additional** features are implemented:
 
 - [ ] 3D touch to preview movie details screen from list screen
 - [x] Launch screen
-- [ ] Added additional movie details on the individual movie pages
+- [x] Added additional movie details on the individual movie pages
 - [ ] Zoomable photo view (Lab 1)
 - [x] Added Upcoming tab
 - [x] Added titles to the movie list pages
@@ -47,7 +47,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 - I faced some UI challenges when running the app on devices of difference sizes. For example, sometimes the images were too small and left white space to the right and bottom of the image, and other times the images were stretched too large and became distorted.
 - I encountered some issues with detecting the network connection, but then eventually found a CocoaPod solution to use rather than building everything from scratch
-- Encountered issues with trying to implement 3D touch; the cells were returning errors or nil values since the movie data was not yet passed to the details view controller
+- Encountered issues with trying to implement 3D touch; the cells were returning errors or nil values since the movie data was not yet passed to the details view controller 
 
 ## License
 
