@@ -33,7 +33,14 @@ class MovieDetailsViewController: UIViewController {
         self.title = title
         self.titleLabel.text = title
         self.titleLabel.sizeToFit()
-        self.ratingLabel.text = String(rating)
+        
+        if let count = movie["vote_count"] as? Int {
+            if count > 0 {
+                //self.ratingLabel.text = "Rating: \(String(rating))"
+                self.ratingLabel.sizeToFit()
+            }
+        }
+        
         self.releaseDateLabel.text = releaseDate
         self.overviewLabel.text = "Synopsis: \(overview)"
         self.overviewLabel.sizeToFit()
