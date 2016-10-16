@@ -17,12 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        // Navigation bar
+        // Customize Navigation bar
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.tintColor = UIColor.white
         navigationBarAppearance.barTintColor = UIColor(red:0.45, green:0.54, blue:0.23, alpha:1.0)
         
-        // Tab bar
+        // Create Tab bar
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
@@ -49,6 +49,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController, upcomingNavigationController]
         
+        // Customize Tab bar
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.tintColor = UIColor.white
+        tabBarAppearance.barTintColor = UIColor(red:0.45, green:0.54, blue:0.23, alpha:1.0)
+        tabBarAppearance.unselectedItemTintColor = UIColor.black
+
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
