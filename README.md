@@ -49,6 +49,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - I encountered some issues with detecting the network connection, but then eventually found a CocoaPod solution to use rather than building everything from scratch
 - Encountered issues with trying to implement 3D touch; the cells were returning errors or nil values since the movie data was not yet passed to the details view controller 
 - Issues with re-formatting the release date string for movies into long date format while still fitting into the UI
+- From a design perspective, it was difficult to find free icons and/or images that scaled down well and didn't display blurry in the app (e.g., tab bar icons)
 
 ## License
 
