@@ -11,12 +11,13 @@ import MBProgressHUD
 import ReachabilitySwift
 import UIKit
 
-class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate , UIViewControllerPreviewingDelegate {
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate , UIViewControllerPreviewingDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
     
     var movies: [NSDictionary]?
+    var searchData: [NSDictionary]?
     var typeEndpoint: String?
     var typeTitle: String?
     var reachability: Reachability = Reachability()!
@@ -41,6 +42,15 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.title = typeTitle
         
+        // Search Bar
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.tintColor = UIColor.black
+        searchBar.placeholder = "Search movies"
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+        
+        // 3D Touch
         if (traitCollection.forceTouchCapability == .available) {
             registerForPreviewing(with: self, sourceView: view)
         }
@@ -50,7 +60,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         self.moviesTableView.insertSubview(refreshControl, at: 0)
         
-        // Infinite Loading loading icon
+        // Infinite Scrolling loading icon
         let tableFooterView: UIView = UIView(frame: CGRect(x:0, y:0, width:UIScreen.main.bounds.size.width, height:50))
         loadingView.center = tableFooterView.center
         tableFooterView.addSubview(loadingView)
@@ -74,6 +84,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                         MBProgressHUD.hide(for: self.view, animated: true)
                         
                         self.movies = responseDictionary["results"] as? [NSDictionary]
+                        self.searchData = self.movies
                         self.moviesTableView.reloadData()
                     }
                 }
@@ -95,14 +106,11 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 delegateQueue:OperationQueue.main
             )
             
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
             let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        
                         self.movies = responseDictionary["results"] as? [NSDictionary]
+                        self.searchData = self.movies
                         self.moviesTableView.reloadData()
                         refreshControl.endRefreshing()
                     }
@@ -115,8 +123,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let movies = self.movies {
-            return movies.count
+        if let searchData = self.searchData {
+            return searchData.count
         }
         return 0;
     }
@@ -129,7 +137,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         backgroundView.backgroundColor = UIColor(red:0.34, green:0.41, blue:0.18, alpha:0.5)
         cell.selectedBackgroundView = backgroundView
         
-        if let movies = self.movies {
+        if let movies = self.searchData {
             let movie = movies[indexPath.row]
             
             let title = movie["original_title"] as! String
@@ -155,7 +163,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             if let cell = self.moviesTableView?.cellForRow(at: indexPath) {
                 previewingContext.sourceRect = CGRect(x:cell.frame.origin.x, y:cell.frame.origin.y+64, width: cell.frame.size.width, height:cell.frame.size.height)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let movies = self.movies {
+                if let movies = self.searchData {
                     let movie = movies[indexPath.row]
                     let detailViewController = storyboard.instantiateViewController(withIdentifier: "movieDetailsViewController") as! MovieDetailsViewController
                     detailViewController.movie = movie
@@ -214,6 +222,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                         // Use the new data to update the data source
                         for dict in responseDictionary["results"] as! [NSDictionary] {
                             self.movies?.append(dict)
+                            self.searchData = self.movies
                         }
                         
                         // Reload the tableView now that there is new data
@@ -230,10 +239,38 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         let indexPath = self.moviesTableView.indexPath(for: cell)
-        if let movies = self.movies {
+        if let movies = self.searchData {
             let movie = movies[indexPath!.row]
             let detailViewController = segue.destination as! MovieDetailsViewController
             detailViewController.movie = movie
+        }
+    }
+    
+    // MARK: - UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.searchData = self.movies
+            self.moviesTableView.reloadData()
+        } else {
+            let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+            let url = URL(string:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchText)")
+            let request = URLRequest(url: url!)
+            let session = URLSession(
+                configuration: URLSessionConfiguration.default,
+                delegate:nil,
+                delegateQueue:OperationQueue.main
+            )
+            
+            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
+                        self.searchData = responseDictionary["results"] as? [NSDictionary]
+                        self.moviesTableView.reloadData()
+                    }
+                }
+            });
+            task.resume()
         }
     }
 }
