@@ -102,7 +102,7 @@
                                 <frame key="frameInset" minY="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="EjH-61-1P1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="no_poster" id="EjH-61-1P1">
                                         <rect key="frame" x="0.0" y="-64" width="375" height="560"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -158,6 +158,7 @@
                     <connections>
                         <outlet property="infoView" destination="CvV-Im-pyb" id="aaB-u5-PqE"/>
                         <outlet property="overviewLabel" destination="pfb-ab-PMD" id="kLx-xG-CT0"/>
+                        <outlet property="posterButton" destination="ynf-jL-h3R" id="zjb-vq-yQc"/>
                         <outlet property="posterImageView" destination="EjH-61-1P1" id="BhF-eT-JQN"/>
                         <outlet property="ratingLabel" destination="RFk-lm-5Ia" id="ewc-O5-VZb"/>
                         <outlet property="releaseDateLabel" destination="TK9-sj-W09" id="LKD-8i-L39"/>
