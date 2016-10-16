@@ -11,7 +11,7 @@ import MBProgressHUD
 import ReachabilitySwift
 import UIKit
 
-class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate /*, UIViewControllerPreviewingDelegate*/ {
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate , UIViewControllerPreviewingDelegate {
     
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
@@ -41,9 +41,9 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.title = typeTitle
         
-        /*if (traitCollection.forceTouchCapability == .available) {
+        if (traitCollection.forceTouchCapability == .available) {
             registerForPreviewing(with: self, sourceView: view)
-        }*/
+        }
         
         // Pull to Refresh refresh control
         let refreshControl = UIRefreshControl()
@@ -150,13 +150,16 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         self.moviesTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    /*func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        if let indexPath = self.moviesTableView?.indexPathForRow(at: location) {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if let indexPath = self.moviesTableView?.indexPathForRow(at: CGPoint(x:location.x, y:location.y-64)) {
             if let cell = self.moviesTableView?.cellForRow(at: indexPath) {
-                previewingContext.sourceRect = cell.frame
+                previewingContext.sourceRect = CGRect(x:cell.frame.origin.x, y:cell.frame.origin.y+64, width: cell.frame.size.width, height:cell.frame.size.height)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let movieDetailsViewController = storyboard.instantiateViewController(withIdentifier: "movieDetailsViewController") as? MovieDetailsViewController {
-                    return movieDetailsViewController
+                if let movies = self.movies {
+                    let movie = movies[indexPath.row]
+                    let detailViewController = storyboard.instantiateViewController(withIdentifier: "movieDetailsViewController") as! MovieDetailsViewController
+                    detailViewController.movie = movie
+                    return detailViewController
                 }
                 
             }
@@ -166,7 +169,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
-    }*/
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (!isMoreDataLoading) {

@@ -2,7 +2,7 @@
 
 Rotten Tomatoes Wannabe is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 6 hours spent in total (5 hours for the required functionality)
+Time spent: 9 hours spent in total (5 hours for the required functionality)
 
 ## User Stories
 
@@ -26,14 +26,14 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] 3D touch to preview movie details screen from list screen
-- [x] Launch screen
-- [x] Added additional movie details on the individual movie pages
-- [x] Zoomable photo view (Lab 1)
-- [x] Added Upcoming tab
+- [x] 3D touch to preview the movie details screen from the list screen
+- [x] Launch screen with image and title
+- [x] Added additional movie details on the individual movie pages (i.e., Rating, Release Date)
+- [x] Zoomable photo view (Lab 1) - open movie poster in the full screen as a modal
+- [x] Added Upcoming movies tab
 - [x] Added titles to the movie list pages
-- [x] Customize the tab bar  
-- [x] Infinite scrolling (Lab 1)
+- [x] Customized the tab bar colours and icons
+- [x] Infinite scrolling (Lab 1) - load more movies when scrolling past the last visible cell
 
 ## Video Walkthrough
 
@@ -48,6 +48,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - I faced some UI challenges when running the app on devices of difference sizes. For example, sometimes the images were too small and left white space to the right and bottom of the image, and other times the images were stretched too large and became distorted.
 - I encountered some issues with detecting the network connection, but then eventually found a CocoaPod solution to use rather than building everything from scratch
 - Encountered issues with trying to implement 3D touch; the cells were returning errors or nil values since the movie data was not yet passed to the details view controller 
+- Issues with re-formatting the release date string for movies into long date format while still fitting into the UI
 
 ## License
 
