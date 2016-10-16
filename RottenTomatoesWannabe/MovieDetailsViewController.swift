@@ -45,11 +45,12 @@ class MovieDetailsViewController: UIViewController {
             }
         }
         
-        let releaseDate = movie["release_date"] as! String // TODO, long date format
+        let releaseDate = movie["release_date"] as! String
         self.releaseDateLabel.text = releaseDate
         
-        let overview = movie["overview"] as! String
-        self.overviewLabel.text = "Synopsis: \(overview)"
+        if let overview = movie["overview"] as? String {
+            self.overviewLabel.text = "Synopsis: \(overview)"
+        }
         self.overviewLabel.sizeToFit()
         
         // Move and resize labels if needed
