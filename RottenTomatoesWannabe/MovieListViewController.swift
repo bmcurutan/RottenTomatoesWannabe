@@ -11,7 +11,7 @@ import MBProgressHUD
 import ReachabilitySwift
 import UIKit
 
-class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate /*, UIViewControllerPreviewingDelegate*/ {
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate /*, UIViewControllerPreviewingDelegate*/ {
     
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
@@ -232,5 +232,16 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             let detailViewController = segue.destination as! MovieDetailsViewController
             detailViewController.movie = movie
         }
+    }
+    
+    // MARK: UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCell", for: indexPath)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
     }
 }
