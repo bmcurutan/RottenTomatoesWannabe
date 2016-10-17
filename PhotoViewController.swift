@@ -19,7 +19,27 @@ class PhotoViewController: UIViewController {
 
         if let posterPath = movie.posterPath {
             let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
-            self.posterImageView.setImageWith(posterUrl as! URL, placeholderImage: UIImage(named: "no_poster"))
+            let imageRequest = NSURLRequest(url: posterUrl as! URL)
+            
+            self.posterImageView.setImageWith(
+                imageRequest as URLRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    
+                    // imageResponse will be nil if the image is cached
+                    if imageResponse != nil {
+                        self.posterImageView.alpha = 0.0
+                        self.posterImageView.image = image
+                        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                            self.posterImageView.alpha = 1.0
+                        })
+                    } else {
+                        self.posterImageView.image = image
+                    }
+                },
+                failure: { (imageRequest, imageResponse, error) -> Void in
+                    print("Error: \(error.localizedDescription)")
+            })
         }
     }
     
