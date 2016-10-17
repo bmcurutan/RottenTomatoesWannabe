@@ -69,6 +69,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 self.movies = json
                 self.searchData = self.movies
                 self.moviesTableView.reloadData()
+                }, errorCallback: { (error) -> Void in
+                    print("Error: \(error?.description)")
             })
         }
     }
@@ -92,6 +94,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 self.searchData = self.movies
                 self.moviesTableView.reloadData()
                 refreshControl.endRefreshing()
+                }, errorCallback: { (error) -> Void in
+                    print("Error: \(error?.description)")
             })
         }
     }
@@ -110,6 +114,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                     self.searchData = self.movies
                 }
                 self.moviesTableView.reloadData()
+                }, errorCallback: { (error) -> Void in
+                    print("Error: \(error?.description)")
             })
         }
     }
@@ -212,6 +218,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
                 self.searchData = json
                 self.moviesTableView.reloadData()
+                }, errorCallback: { (error) -> Void in
+                    print("Error: \(error?.description)")
             })
         }
     }
