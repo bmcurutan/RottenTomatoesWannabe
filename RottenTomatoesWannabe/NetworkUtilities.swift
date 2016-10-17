@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bianca Curutan. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkUtilities {
     

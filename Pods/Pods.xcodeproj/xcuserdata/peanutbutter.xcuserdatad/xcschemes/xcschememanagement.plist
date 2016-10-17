@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RottenTomatoesWannabe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1DDB534DF55516A6DA2DF0CBA9972DD6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>67E4DC1131FA1768FA465E76E6B2B96A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C49518CEC1F3C4003F4CCDFD58AE4667</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DBA6001481CEA0EBA031CC5C94508FAA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DE822C470BF4BDD3AFD75748D7E03A79</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E973D1007BB44744F58927EAFCEA0569</key>
 		<dict>
 			<key>primary</key>
 			<true/>
