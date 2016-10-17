@@ -38,6 +38,9 @@ class NetworkUtilities {
                             if let posterPath = dict["poster_path"] as? String {
                                 movie.posterPath = posterPath
                             }
+                            if let posterPath = dict["poster_path"] as? String {
+                                movie.posterPath = posterPath
+                            }
                             if let releaseDate = dict["release_date"] as? String {
                                 movie.releaseDate = releaseDate
                             }

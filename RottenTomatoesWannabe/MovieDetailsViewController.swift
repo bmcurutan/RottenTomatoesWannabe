@@ -25,28 +25,64 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         if let posterPath = movie.posterPath {
-            let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
+            let smallPosterUrl = NSURL(string: Constants.baseUrl + Constants.smallSize + posterPath)
+            let posterUrl = NSURL(string: Constants.baseUrl + Constants.normalSize + posterPath)
+            let largePosterUrl = NSURL(string: Constants.baseUrl + Constants.largeSize + posterPath)
+            let smallImageRequest = NSURLRequest(url: smallPosterUrl as! URL)
             let imageRequest = NSURLRequest(url: posterUrl as! URL)
+            let largeImageRequest = NSURLRequest(url: largePosterUrl as! URL)
             
             self.posterImageView.setImageWith(
-                imageRequest as URLRequest,
-                placeholderImage: nil,
-                success: { (imageRequest, imageResponse, image) -> Void in
+                smallImageRequest as URLRequest,
+                placeholderImage: UIImage(named:"no poster"),
+                success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                 
+                    // smallImageResponse will be nil if the smallImage is already available in cache
+                    self.posterImageView.alpha = 0.0
+                    self.posterImageView.image = smallImage;
                     
-                    // imageResponse will be nil if the image is cached
-                    if imageResponse != nil {
-                        self.posterImageView.alpha = 0.0
-                        self.posterImageView.image = image
-                        UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                            self.posterImageView.alpha = 1.0
-                        })
-                    } else {
-                        self.posterImageView.image = image
-                    }
+                    UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                        self.posterImageView.alpha = 1.0
+                        }, completion: { (success) -> Void in
+                            self.posterImageView.setImageWith(
+                                largeImageRequest as URLRequest,
+                                placeholderImage: smallImage,
+                                success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                    self.posterImageView.image = largeImage;
+                                },
+                                failure: { (request, response, error) -> Void in
+                                    self.posterImageView.setImageWith(
+                                        imageRequest as URLRequest,
+                                        placeholderImage: smallImage,
+                                        success: { (imageRequest, imageResponse, image) -> Void in
+                                            self.posterImageView.image = image;
+                                        },
+                                        failure: { (request, response, error) -> Void in
+                                            print("Error: \(error.localizedDescription)")
+                                    })
+                            })
+                    })
                 },
-                failure: { (imageRequest, imageResponse, error) -> Void in
-                    print("Error: \(error.localizedDescription)")
+                failure: { (request, response, error) -> Void in
+                    self.posterImageView.setImageWith(
+                        largeImageRequest as URLRequest,
+                        placeholderImage: UIImage(named:"no_poster"),
+                        success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                            self.posterImageView.image = largeImage;
+                        },
+                        failure: { (request, response, error) -> Void in
+                            self.posterImageView.setImageWith(
+                                imageRequest as URLRequest,
+                                placeholderImage: UIImage(named:"no_poster"),
+                                success: { (imageRequest, imageResponse, image) -> Void in
+                                    self.posterImageView.image = image;
+                                },
+                                failure: { (request, response, error) -> Void in
+                                    print("Error: \(error.localizedDescription)")
+                            })
+                    })
             })
+            
         } else {
         self.posterImageView.frame = CGRect(x:0, y:0, width:0, height:0)
             self.infoView.frame = CGRect(x:0, y:0, width:self.infoView.frame.size.width, height:self.infoView.frame.size.height)

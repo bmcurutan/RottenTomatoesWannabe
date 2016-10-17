@@ -29,13 +29,22 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     var loadingView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     override func viewWillAppear(_ animated: Bool) {
-        self.checkForNetwork()
+        super.viewWillAppear(animated)
+        updateNetworkError()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = typeTitle
+        
+        // Reachability
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Could not start reachability notifier")
+        }
         
         // Search Bar
         let searchBar = UISearchBar()
@@ -77,7 +86,16 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: - Private Methods
     
-    func checkForNetwork() {
+    func updateNetworkError() {
+        if reachability.isReachable {
+            self.errorView.isHidden = true // Hide Network Error message
+        } else {
+            self.errorView.isHidden = false// Display Network Error message
+        }
+    }
+    
+    func reachabilityChanged(notification: NSNotification) {
+        let reachability = notification.object as! Reachability
         if reachability.isReachable {
             self.errorView.isHidden = true // Hide Network Error message
         } else {
@@ -86,7 +104,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        self.checkForNetwork()
+        updateNetworkError()
         if let endpoint = typeEndpoint {
             let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)"
             NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
@@ -148,7 +166,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             }
             
             if let posterPath = movie.posterPath {
-                let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
+                let posterUrl = NSURL(string: Constants.baseUrl + Constants.normalSize + posterPath)
                 let imageRequest = NSURLRequest(url: posterUrl as! URL)
                 
                 cell.posterImageView.setImageWith(

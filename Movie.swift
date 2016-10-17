@@ -12,6 +12,7 @@ class Movie {
     
     var id:Int?
     var posterPath:String?
+    var posterPathSmall:String?
     var releaseDate:String?
     var overview:String?
     var title:String?
@@ -22,9 +23,10 @@ class Movie {
         // Empty movie
     }
     
-    init(id:Int, posterPath:String, releaseDate:String, overview:String, title:String, voteAverage:Double, voteCount:Int) {
+    init(id:Int, posterPath:String, posterPathSmall:String, releaseDate:String, overview:String, title:String, voteAverage:Double, voteCount:Int) {
         self.id = id
         self.posterPath = posterPath
+        self.posterPathSmall = posterPathSmall
         self.releaseDate = releaseDate
         self.overview = overview
         self.title = title
