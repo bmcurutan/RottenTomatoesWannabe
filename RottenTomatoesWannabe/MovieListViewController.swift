@@ -62,13 +62,14 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         self.moviesTableView.tableFooterView = tableFooterView
         
         if let endpoint = typeEndpoint {
-            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)"
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)"
             MBProgressHUD.showAdded(to: self.view, animated: true)
             NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.movies = json
                 self.searchData = self.movies
                 self.moviesTableView.reloadData()
+                }, error: { (error) -> Void in print("Error: \(error?.description)")
             })
         }
     }
@@ -86,12 +87,13 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     func refreshControlAction(refreshControl: UIRefreshControl) {
         self.checkForNetwork()
         if let endpoint = typeEndpoint {
-            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)"
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)"
             NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
                 self.movies = json
                 self.searchData = self.movies
                 self.moviesTableView.reloadData()
                 refreshControl.endRefreshing()
+                }, error: { (error) -> Void in print("Error: \(error?.description)")
             })
         }
     }
@@ -101,7 +103,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         page += 1
         
         if let endpoint = typeEndpoint {
-            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)&page=\(page)"
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)"
             NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
                 self.isMoreDataLoading = false
                 self.loadingView.stopAnimating()
@@ -110,6 +112,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                     self.searchData = self.movies
                 }
                 self.moviesTableView.reloadData()
+                }, error: { (error) -> Void in print("Error: \(error?.description)")
             })
         }
     }
@@ -208,7 +211,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             self.searchData = self.movies
             self.moviesTableView.reloadData()
         } else {
-            let urlString = "\(Constants.movieDbUrl)search/movie?api_key=\(Constants.apiKey)&query=\(searchText)"
+            let urlString = "\(Constants.movieDbUrl)search/movie?query=\(searchText)"
             NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
                 self.searchData = json
                 self.moviesTableView.reloadData()

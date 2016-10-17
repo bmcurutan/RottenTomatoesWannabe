@@ -6,6 +6,7 @@
 //  Copyright © 2016 Bianca Curutan. All rights reserved.
 //
 
+import AFNetworking
 import MBProgressHUD
 import UIKit
 
@@ -14,7 +15,24 @@ class NetworkUtilities {
     // Singleton instance
     static let sharedInstance = NetworkUtilities()
     
-    func fetchDataWithUrl(url: String, completion: @escaping ([Movie]) -> Void) {
+    func fetchDataWithUrl(url: String, completion: ([Movie]) -> Void, error: ((NSError?) -> Void)?) {
+        let manager = AFHTTPSessionManager()
+        let params = ["api_key":"\(Constants.apiKey)"]
+        
+        manager.get(url, parameters: params, success: { (operation, responseObject) -> Void in
+            var json: [Movie] = []
+            for dict in responseObject["results"] as! [NSDictionary] {
+                let movie = Movie()
+            }
+            completion(json)
+            }, failure: { (operation, requestError) -> Void in
+                if let errorCallback = error {
+                    errorCallback(requestError as NSError?)
+                }
+        })
+    }
+    
+    /*func fetchDataWithUrl(url: String, completion: @escaping ([Movie]) -> Void) {
         let url = URL(string:url)
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -58,5 +76,5 @@ class NetworkUtilities {
             }
         });
         task.resume()
-    }
+    }*/
 }
