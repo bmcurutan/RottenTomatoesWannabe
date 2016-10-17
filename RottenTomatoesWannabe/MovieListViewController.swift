@@ -149,7 +149,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             
             if let posterPath = movie.posterPath {
                 let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
-                cell.posterImageView.setImageWith(posterUrl as! URL)
+                cell.posterImageView.setImageWith(posterUrl as! URL, placeholderImage: UIImage(named: "no_poster"))
             }
         }
         return cell

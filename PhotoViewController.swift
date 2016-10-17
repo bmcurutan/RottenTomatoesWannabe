@@ -19,7 +19,7 @@ class PhotoViewController: UIViewController {
 
         if let posterPath = movie.posterPath {
             let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
-            self.posterImageView.setImageWith(posterUrl as! URL)
+            self.posterImageView.setImageWith(posterUrl as! URL, placeholderImage: UIImage(named: "no_poster"))
         }
     }
     

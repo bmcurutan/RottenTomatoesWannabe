@@ -26,7 +26,7 @@ class MovieDetailsViewController: UIViewController {
         
         if let posterPath = movie.posterPath {
             let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
-            self.posterImageView.setImageWith(posterUrl as! URL)
+            self.posterImageView.setImageWith(posterUrl as! URL, placeholderImage: UIImage(named: "no_poster"))
         } else {
         self.posterImageView.frame = CGRect(x:0, y:0, width:0, height:0)
             self.infoView.frame = CGRect(x:0, y:0, width:self.infoView.frame.size.width, height:self.infoView.frame.size.height)
