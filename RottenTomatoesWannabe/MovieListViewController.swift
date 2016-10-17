@@ -81,26 +81,13 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     func refreshControlAction(refreshControl: UIRefreshControl) {
         self.checkForNetwork()
         if let endpoint = typeEndpoint {
-            let url = URL(string:"\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)")
-            let request = URLRequest(url: url!)
-
-            let session = URLSession(
-                configuration: URLSessionConfiguration.default,
-                delegate:nil,
-                delegateQueue:OperationQueue.main
-            )
-            
-            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-                if let data = dataOrNil {
-                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                        self.movies = responseDictionary["results"] as? [NSDictionary]
-                        self.searchData = self.movies
-                        self.moviesTableView.reloadData()
-                        refreshControl.endRefreshing()
-                    }
-                }
-            });
-            task.resume()
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)"
+            NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
+                self.movies = json
+                self.searchData = self.movies
+                self.moviesTableView.reloadData()
+                refreshControl.endRefreshing()
+            })
         }
     }
     
@@ -182,37 +169,16 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         page += 1
         
         if let endpoint = typeEndpoint {
-            let url = URL(string:"\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)&page=\(page)")
-            let request = URLRequest(url: url!)
-            
-            // Configure session so that completion handler is executed on main UI thread
-            let session = URLSession(
-                configuration: URLSessionConfiguration.default,
-                delegate:nil,
-                delegateQueue:OperationQueue.main
-            )
-        
-            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-                if let data = dataOrNil {
-                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                        // Update flag
-                        self.isMoreDataLoading = false
-                        
-                        // Stop the loading indicator
-                        self.loadingView.stopAnimating()
-                        
-                        // Use the new data to update the data source
-                        for dict in responseDictionary["results"] as! [NSDictionary] {
-                            self.movies?.append(dict)
-                            self.searchData = self.movies
-                        }
-                        
-                        // Reload the tableView now that there is new data
-                        self.moviesTableView.reloadData()
-                    }
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)&page=\(page)"
+            NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
+                self.isMoreDataLoading = false
+                self.loadingView.stopAnimating()
+                for dict in json {
+                    self.movies?.append(dict)
+                    self.searchData = self.movies
                 }
-            });
-            task.resume()
+                self.moviesTableView.reloadData()
+            })
         }
     }
     
@@ -235,23 +201,11 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             self.searchData = self.movies
             self.moviesTableView.reloadData()
         } else {
-            let url = URL(string:"\(Constants.movieDbUrl)search/movie?api_key=\(Constants.apiKey)&query=\(searchText)")
-            let request = URLRequest(url: url!)
-            let session = URLSession(
-                configuration: URLSessionConfiguration.default,
-                delegate:nil,
-                delegateQueue:OperationQueue.main
-            )
-            
-            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-                if let data = dataOrNil {
-                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                        self.searchData = responseDictionary["results"] as? [NSDictionary]
-                        self.moviesTableView.reloadData()
-                    }
-                }
-            });
-            task.resume()
+            let urlString = "\(Constants.movieDbUrl)search/movie?api_key=\(Constants.apiKey)&query=\(searchText)"
+            NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
+                self.searchData = json
+                self.moviesTableView.reloadData()
+            })
         }
     }
 }
