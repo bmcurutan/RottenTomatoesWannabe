@@ -16,25 +16,20 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
     
-    var movies: [NSDictionary]?
-    var searchData: [NSDictionary]?
-    var typeEndpoint: String?
-    var typeTitle: String?
-    var reachability: Reachability = Reachability()!
-    var isMoreDataLoading = false
-    var page: Int = 1
+    var movies: [NSDictionary]? // List of movie data
+    var searchData: [NSDictionary]? // List of filtered movie data
+    
+    var typeEndpoint: String? // now_playing, top_rated, upcoming
+    var typeTitle: String? // Now Playing, Top Rated, Upcoming
+    
+    var reachability: Reachability = Reachability()! // Used to check network connection
+    
+    var isMoreDataLoading = false // More data loading status
+    var page: Int = 1 // API page number for movies list
     var loadingView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     override func viewWillAppear(_ animated: Bool) {
         self.checkForNetwork()
-    }
-    
-    func checkForNetwork() {
-        if reachability.isReachable {
-            self.errorView.isHidden = true // Hide Network Error message
-        } else {
-            self.errorView.isHidden = false// Display Network Error message
-        }
     }
     
     override func viewDidLoad() {
@@ -78,6 +73,16 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    // MARK: - Private Methods
+    
+    func checkForNetwork() {
+        if reachability.isReachable {
+            self.errorView.isHidden = true // Hide Network Error message
+        } else {
+            self.errorView.isHidden = false// Display Network Error message
+        }
+    }
+    
     func refreshControlAction(refreshControl: UIRefreshControl) {
         self.checkForNetwork()
         if let endpoint = typeEndpoint {
@@ -87,6 +92,24 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 self.searchData = self.movies
                 self.moviesTableView.reloadData()
                 refreshControl.endRefreshing()
+            })
+        }
+    }
+    
+    func loadMoreData() {
+        // Increment page
+        page += 1
+        
+        if let endpoint = typeEndpoint {
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)&page=\(page)"
+            NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
+                self.isMoreDataLoading = false
+                self.loadingView.stopAnimating()
+                for dict in json {
+                    self.movies?.append(dict)
+                    self.searchData = self.movies
+                }
+                self.moviesTableView.reloadData()
             })
         }
     }
@@ -161,24 +184,6 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                 isMoreDataLoading = true
                 loadMoreData()
             }
-        }
-    }
-    
-    func loadMoreData() {
-        // Increment page
-        page += 1
-        
-        if let endpoint = typeEndpoint {
-            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)&page=\(page)"
-            NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
-                self.isMoreDataLoading = false
-                self.loadingView.stopAnimating()
-                for dict in json {
-                    self.movies?.append(dict)
-                    self.searchData = self.movies
-                }
-                self.moviesTableView.reloadData()
-            })
         }
     }
     
