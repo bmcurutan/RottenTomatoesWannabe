@@ -38,7 +38,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/dwFr0Hg.gif' title='Rotten Tomatoes Wannabe Video Walkthrough' width='' alt='Rotten Tomatoes Wannabe Video Walkthrough' />
+<img src='http://i.imgur.com/XZ7Kwv3.gif' title='Rotten Tomatoes Wannabe Video Walkthrough' width='' alt='Rotten Tomatoes Wannabe Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
