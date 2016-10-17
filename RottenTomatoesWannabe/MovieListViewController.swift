@@ -67,28 +67,14 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         self.moviesTableView.tableFooterView = tableFooterView
         
         if let endpoint = typeEndpoint {
-            let url = URL(string:"\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)")
-            let request = URLRequest(url: url!)
-            let session = URLSession(
-                configuration: URLSessionConfiguration.default,
-                delegate:nil,
-                delegateQueue:OperationQueue.main
-            )
-            
+            let urlString = "\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)"
             MBProgressHUD.showAdded(to: self.view, animated: true)
-            
-            let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
-                if let data = dataOrNil {
-                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        
-                        self.movies = responseDictionary["results"] as? [NSDictionary]
-                        self.searchData = self.movies
-                        self.moviesTableView.reloadData()
-                    }
-                }
-            });
-            task.resume()
+            NetworkUtilities.sharedInstance.fetchDataWithUrl(url:urlString, completion: { (json) -> Void in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.movies = json
+                self.searchData = self.movies
+                self.moviesTableView.reloadData()
+            })
         }
     }
     

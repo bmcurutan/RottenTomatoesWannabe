@@ -8,12 +8,21 @@
 
 import Foundation
 
-struct Movie {
+class Movie {
     
     var id:Int
-    var posterUrl:String
+    var posterPath:String
     var releaseDate:Date
     var overview:String
     var title:String
+    
+    init(id: Int, posterPath: String, releaseDate: Date, overview: String, title: String) {
+        self.id = id
+        self.posterPath = posterPath
+        self.releaseDate = releaseDate
+        self.overview = overview
+        self.title = title
+    }
+
     
 }
