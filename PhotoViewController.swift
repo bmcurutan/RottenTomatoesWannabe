@@ -12,12 +12,12 @@ class PhotoViewController: UIViewController {
 
     @IBOutlet weak var posterImageView: UIImageView!
     
-    var movie: NSDictionary!
+    var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let posterPath = movie["poster_path"] as? String {
+        if let posterPath = movie.posterPath {
             let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
             self.posterImageView.setImageWith(posterUrl as! URL)
         }

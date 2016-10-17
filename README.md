@@ -2,7 +2,7 @@
 
 Rotten Tomatoes Wannabe is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 11 hours spent in total (5 hours for the required functionality)
+Time spent: 13 hours spent in total (5 hours for the required functionality)
 
 ## User Stories
 
@@ -49,6 +49,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 - Encountered issues with trying to implement 3D touch; the cells were returning errors or nil values since the movie data was not yet passed to the details view controller 
 - Issues with re-formatting the release date string for movies into long date format while still fitting into the UI
 - Originally I implemented 3D touch to preview the movie details screen from the list screen, but there were some alignment and data issues such that the wrong movie would be displayed. 
+- There are some outstanding warnings. Although they do not cause any functional issues currently, they would need to be fixed in case there are runtime issues in the future. 
 
 ## License
 

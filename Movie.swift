@@ -10,18 +10,26 @@ import Foundation
 
 class Movie {
     
-    var id:Int
-    var posterPath:String
-    var releaseDate:Date
-    var overview:String
-    var title:String
+    var id:Int?
+    var posterPath:String?
+    var releaseDate:String?
+    var overview:String?
+    var title:String?
+    var voteAverage:Double?
+    var voteCount:Int?
     
-    init(id: Int, posterPath: String, releaseDate: Date, overview: String, title: String) {
+    init() {
+        // Empty movie
+    }
+    
+    init(id:Int, posterPath:String, releaseDate:String, overview:String, title:String, voteAverage:Double, voteCount:Int) {
         self.id = id
         self.posterPath = posterPath
         self.releaseDate = releaseDate
         self.overview = overview
         self.title = title
+        self.voteAverage = voteAverage
+        self.voteCount = voteCount
     }
 
     

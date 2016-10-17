@@ -19,12 +19,12 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var posterButton: UIButton!
     @IBOutlet weak var infoView: UIView!
     
-    var movie: NSDictionary!
+    var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let posterPath = movie["poster_path"] as? String {
+        if let posterPath = movie.posterPath {
             let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
             self.posterImageView.setImageWith(posterUrl as! URL)
         } else {
@@ -33,23 +33,24 @@ class MovieDetailsViewController: UIViewController {
             self.posterButton.isEnabled = false
         }
         
-        let title = movie["original_title"] as! String
+        let title = movie.title
         self.title = title // Navigation bar title
         self.titleLabel.text = title
         self.titleLabel.sizeToFit()
         
-        let rating = movie["vote_average"] as! Double
-        if let count = movie["vote_count"] as? Int {
+        if let count = movie.voteCount,
+           let voteAverage = movie.voteAverage {
             if count > 0 {
-                self.ratingLabel.text = "Rating: \(String(rating))"
+                self.ratingLabel.text = "Rating: \(String(voteAverage))"
                 self.ratingLabel.sizeToFit()
             }
         }
         
-        let releaseDate = movie["release_date"] as! String
-        self.releaseDateLabel.text = releaseDate
+        if let releaseDate = movie.releaseDate {
+            self.releaseDateLabel.text = releaseDate
+        }
         
-        if let overview = movie["overview"] as? String {
+        if let overview = movie.overview {
             self.overviewLabel.text = "Synopsis: \(overview)"
         }
         self.overviewLabel.sizeToFit()

@@ -16,8 +16,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
     
-    var movies: [NSDictionary]? // List of movie data
-    var searchData: [NSDictionary]? // List of filtered movie data
+    var movies: [Movie]? // List of movie data
+    var searchData: [Movie]? // List of filtered movie data
     
     var typeEndpoint: String? // now_playing, top_rated, upcoming
     var typeTitle: String? // Now Playing, Top Rated, Upcoming
@@ -134,12 +134,14 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         if let movies = self.searchData {
             let movie = movies[indexPath.row]
             
-            let title = movie["original_title"] as! String
-            let overview = movie["overview"] as! String
+            let title = movie.title
             cell.titleLabel.text = title
-            cell.overviewLabel.text = "Synopsis: \(overview)"
             
-            if let posterPath = movie["poster_path"] as? String {
+            if let overview = movie.overview {
+                cell.overviewLabel.text = "Synopsis: \(overview)"
+            }
+            
+            if let posterPath = movie.posterPath {
                 let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
                 cell.posterImageView.setImageWith(posterUrl as! URL)
             }

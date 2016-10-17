@@ -9,4 +9,5 @@ target "RottenTomatoesWannabe" do
   pod "AFNetworking"
   pod "MBProgressHUD"
   pod "ReachabilitySwift"
+  pod "SwiftyJSON"
 end
