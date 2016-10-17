@@ -11,13 +11,14 @@
 		67060C491DAFDA600028D65A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67060C481DAFDA600028D65A /* AppDelegate.swift */; };
 		67060C4B1DAFDA600028D65A /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67060C4A1DAFDA600028D65A /* MovieListViewController.swift */; };
 		67060C4E1DAFDA600028D65A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67060C4C1DAFDA600028D65A /* Main.storyboard */; };
-		67060C501DAFDA600028D65A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67060C4F1DAFDA600028D65A /* Assets.xcassets */; };
+		67060C501DAFDA600028D65A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67060C4F1DAFDA600028D65A /* Images.xcassets */; };
 		67060C531DAFDA600028D65A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67060C511DAFDA600028D65A /* LaunchScreen.storyboard */; };
 		6714A6691DB0BCAA00F975F3 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6714A6681DB0BCAA00F975F3 /* MovieDetailsViewController.swift */; };
 		671A29051DB0BF0C00DAA08E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671A29041DB0BF0C00DAA08E /* MovieCell.swift */; };
 		671A29081DB0BFEE00DAA08E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671A29071DB0BFEE00DAA08E /* Movie.swift */; };
 		6752E8151DB151DB00A88030 /* NetworkUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6752E8141DB151DB00A88030 /* NetworkUtilities.swift */; };
 		67970D381DB2FEA4009EBE3B /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67970D371DB2FEA4009EBE3B /* PhotoViewController.swift */; };
+		67D7C91F1DB4965300CEF6EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D7C91E1DB4965300CEF6EF /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +26,7 @@
 		67060C481DAFDA600028D65A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67060C4A1DAFDA600028D65A /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		67060C4D1DAFDA600028D65A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		67060C4F1DAFDA600028D65A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		67060C4F1DAFDA600028D65A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		67060C521DAFDA600028D65A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67060C541DAFDA600028D65A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6714A6681DB0BCAA00F975F3 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +34,7 @@
 		671A29071DB0BFEE00DAA08E /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = ../Movie.swift; sourceTree = "<group>"; };
 		6752E8141DB151DB00A88030 /* NetworkUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUtilities.swift; sourceTree = "<group>"; };
 		67970D371DB2FEA4009EBE3B /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = ../PhotoViewController.swift; sourceTree = "<group>"; };
+		67D7C91E1DB4965300CEF6EF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7E62FE6B6F43F6FF11F9A5FD /* Pods-RottenTomatoesWannabe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoesWannabe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoesWannabe/Pods-RottenTomatoesWannabe.debug.xcconfig"; sourceTree = "<group>"; };
 		B47A5B6717E7CA0336771C58 /* Pods_RottenTomatoesWannabe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RottenTomatoesWannabe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1411BB0E891F32F6406CED /* Pods-RottenTomatoesWannabe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RottenTomatoesWannabe.release.xcconfig"; path = "Pods/Target Support Files/Pods-RottenTomatoesWannabe/Pods-RottenTomatoesWannabe.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,10 +86,11 @@
 				67A423881DB1D47C00265EFE /* Objects */,
 				6714A6671DB0BC8000F975F3 /* View Controllers */,
 				67060C481DAFDA600028D65A /* AppDelegate.swift */,
+				67D7C91E1DB4965300CEF6EF /* Constants.swift */,
 				6752E8141DB151DB00A88030 /* NetworkUtilities.swift */,
 				67060C511DAFDA600028D65A /* LaunchScreen.storyboard */,
 				67060C4C1DAFDA600028D65A /* Main.storyboard */,
-				67060C4F1DAFDA600028D65A /* Assets.xcassets */,
+				67060C4F1DAFDA600028D65A /* Images.xcassets */,
 				67060C541DAFDA600028D65A /* Info.plist */,
 			);
 			path = RottenTomatoesWannabe;
@@ -192,7 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67060C531DAFDA600028D65A /* LaunchScreen.storyboard in Resources */,
-				67060C501DAFDA600028D65A /* Assets.xcassets in Resources */,
+				67060C501DAFDA600028D65A /* Images.xcassets in Resources */,
 				67060C4E1DAFDA600028D65A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +262,7 @@
 				67970D381DB2FEA4009EBE3B /* PhotoViewController.swift in Sources */,
 				6714A6691DB0BCAA00F975F3 /* MovieDetailsViewController.swift in Sources */,
 				671A29081DB0BFEE00DAA08E /* Movie.swift in Sources */,
+				67D7C91F1DB4965300CEF6EF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

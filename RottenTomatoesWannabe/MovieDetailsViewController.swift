@@ -24,9 +24,8 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let baseUrl = "https://image.tmdb.org/t/p/w342";
         if let posterPath = movie["poster_path"] as? String {
-            let posterUrl = NSURL(string: baseUrl + posterPath)
+            let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
             self.posterImageView.setImageWith(posterUrl as! URL)
         } else {
         self.posterImageView.frame = CGRect(x:0, y:0, width:0, height:0)
@@ -35,7 +34,7 @@ class MovieDetailsViewController: UIViewController {
         }
         
         let title = movie["original_title"] as! String
-        self.title = title // Page title
+        self.title = title // Navigation bar title
         self.titleLabel.text = title
         self.titleLabel.sizeToFit()
         

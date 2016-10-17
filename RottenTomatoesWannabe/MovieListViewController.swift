@@ -66,9 +66,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         tableFooterView.addSubview(loadingView)
         self.moviesTableView.tableFooterView = tableFooterView
         
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         if let endpoint = typeEndpoint {
-            let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+            let url = URL(string:"\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)")
             let request = URLRequest(url: url!)
             let session = URLSession(
                 configuration: URLSessionConfiguration.default,
@@ -95,9 +94,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
         self.checkForNetwork()
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         if let endpoint = typeEndpoint {
-            let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+            let url = URL(string:"\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)")
             let request = URLRequest(url: url!)
 
             let session = URLSession(
@@ -145,9 +143,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             cell.titleLabel.text = title
             cell.overviewLabel.text = "Synopsis: \(overview)"
             
-            let baseUrl = "https://image.tmdb.org/t/p/w342";
             if let posterPath = movie["poster_path"] as? String {
-                let posterUrl = NSURL(string: baseUrl + posterPath)
+                let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
                 cell.posterImageView.setImageWith(posterUrl as! URL)
             }
         }
@@ -198,9 +195,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         // Increment page
         page += 1
         
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         if let endpoint = typeEndpoint {
-            let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)&page=\(page)")
+            let url = URL(string:"\(Constants.movieDbUrl)movie/\(endpoint)?api_key=\(Constants.apiKey)&page=\(page)")
             let request = URLRequest(url: url!)
             
             // Configure session so that completion handler is executed on main UI thread
@@ -253,8 +249,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             self.searchData = self.movies
             self.moviesTableView.reloadData()
         } else {
-            let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-            let url = URL(string:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchText)")
+            let url = URL(string:"\(Constants.movieDbUrl)search/movie?api_key=\(Constants.apiKey)&query=\(searchText)")
             let request = URLRequest(url: url!)
             let session = URLSession(
                 configuration: URLSessionConfiguration.default,

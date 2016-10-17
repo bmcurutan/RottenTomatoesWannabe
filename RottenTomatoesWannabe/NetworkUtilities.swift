@@ -9,6 +9,7 @@
 import Foundation
 
 class NetworkUtilities {
+    
     // Singleton instance
     static let sharedInstance = NetworkUtilities()
 }

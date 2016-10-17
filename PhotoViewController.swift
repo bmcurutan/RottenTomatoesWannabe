@@ -17,9 +17,8 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let baseUrl = "https://image.tmdb.org/t/p/w342";
         if let posterPath = movie["poster_path"] as? String {
-            let posterUrl = NSURL(string: baseUrl + posterPath)
+            let posterUrl = NSURL(string: Constants.baseUrl + posterPath)
             self.posterImageView.setImageWith(posterUrl as! URL)
         }
     }

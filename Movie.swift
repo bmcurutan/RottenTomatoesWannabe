@@ -9,10 +9,11 @@
 import Foundation
 
 struct Movie {
+    
     var id:Int
     var posterUrl:String
-    //var releaseDate:Date = Date()
-    //var overview:String = String()
+    var releaseDate:Date
+    var overview:String
     var title:String
     
 }
