@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				671A29061DB0BF3C00DAA08E /* Cells */,
-				67A423881DB1D47C00265EFE /* Objects */,
+				67A423881DB1D47C00265EFE /* Models */,
 				6714A6671DB0BC8000F975F3 /* View Controllers */,
 				67060C481DAFDA600028D65A /* AppDelegate.swift */,
 				67D7C91E1DB4965300CEF6EF /* Constants.swift */,
@@ -114,12 +114,12 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		67A423881DB1D47C00265EFE /* Objects */ = {
+		67A423881DB1D47C00265EFE /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				671A29071DB0BFEE00DAA08E /* Movie.swift */,
 			);
-			name = Objects;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		BAFDAC1D9C62AC5207EAE7B2 /* Frameworks */ = {
