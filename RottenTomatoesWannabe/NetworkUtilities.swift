@@ -23,16 +23,9 @@ class NetworkUtilities {
             delegateQueue:OperationQueue.main
         )
         
-        //MBProgressHUD.showAdded(to: self.view, animated: true)
-        
         let task : URLSessionDataTask = session.dataTask(with: request, completionHandler: { (dataOrNil, response, error) in
             if let data = dataOrNil {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                    //MBProgressHUD.hide(for: self.view, animated: true)
-                    
-                    /*self.movies = responseDictionary["results"] as? [NSDictionary]
-                    self.searchData = self.movies
-                    self.moviesTableView.reloadData()*/
                     completion(responseDictionary["results"] as! [NSDictionary])
                 }
             }
