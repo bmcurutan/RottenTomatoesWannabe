@@ -11,7 +11,7 @@ import MBProgressHUD
 import ReachabilitySwift
 import UIKit
 
-class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate , UIViewControllerPreviewingDelegate, UISearchBarDelegate {
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, /*UIViewControllerPreviewingDelegate,*/ UISearchBarDelegate {
     
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var errorView: UIView!
@@ -51,9 +51,9 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         navigationItem.titleView = searchBar
         
         // 3D Touch
-        if (traitCollection.forceTouchCapability == .available) {
+        /*if (traitCollection.forceTouchCapability == .available) {
             registerForPreviewing(with: self, sourceView: view)
-        }
+        }*/
         
         // Pull to Refresh refresh control
         let refreshControl = UIRefreshControl()
@@ -158,7 +158,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         self.moviesTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    /*func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         if let indexPath = self.moviesTableView?.indexPathForRow(at: CGPoint(x:location.x, y:location.y-64)) {
             if let cell = self.moviesTableView?.cellForRow(at: indexPath) {
                 previewingContext.sourceRect = CGRect(x:cell.frame.origin.x, y:cell.frame.origin.y+64, width: cell.frame.size.width, height:cell.frame.size.height)
@@ -177,7 +177,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
-    }
+    }*/
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (!isMoreDataLoading) {

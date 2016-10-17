@@ -29,6 +29,8 @@ class MovieDetailsViewController: UIViewController {
             let posterUrl = NSURL(string: baseUrl + posterPath)
             self.posterImageView.setImageWith(posterUrl as! URL)
         } else {
+        self.posterImageView.frame = CGRect(x:0, y:0, width:0, height:0)
+            self.infoView.frame = CGRect(x:0, y:0, width:self.infoView.frame.size.width, height:self.infoView.frame.size.height)
             self.posterButton.isEnabled = false
         }
         
