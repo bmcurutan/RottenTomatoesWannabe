@@ -44,12 +44,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-- I faced some UI challenges when running the app on devices of difference sizes. For example, sometimes the images were too small and left white space to the right and bottom of the image, and other times the images were stretched too large and became distorted.
-- I encountered some issues with detecting the network connection, but then eventually found a CocoaPod solution to use rather than building everything from scratch
-- Encountered issues with trying to implement 3D touch; the cells were returning errors or nil values since the movie data was not yet passed to the details view controller 
-- Issues with re-formatting the release date string for movies into long date format while still fitting into the UI
-- Originally I implemented 3D touch to preview the movie details screen from the list screen, but there were some alignment and data issues such that the wrong movie would be displayed. 
-- There are some outstanding warnings. Although they do not cause any functional issues currently, they would need to be fixed in case there are runtime issues in the future. 
+- I faced some UI challenges when running the app on devices of difference sizes. For example, sometimes the images were too small and left white space to the right and bottom of the image, and other times the images were stretched too large and became distorted or the aspect ratio was off. Per the instructions, eventually just focused on improving the UI for the 6S experience primarily.
+- I originally implemented 3D touch to preview the movie details screen from the list screen, but there were some alignment and data issues such that the wrong movie would be displayed. Prior to that, the cells were returning errors or nil values since the movie data was not yet passed to the details view controller (because the prepareForSegue method wasn't activated)
+- Issues with re-formatting the release date string for movies into long date format while still fitting into the UI. When expanding the date into a text format, it didn't look very visually appealing. The current solution to keep it as yyyy-mm-dd numerical format works fine for the UI, but is not necessarily the usual date format for many countries if this app were to be expanded internationally.
+- There are many ways I think this app can be improved or expanded on, such as using a CocoaPod solution to parse the JSON data (the current way is sufficient for now since we only dig shallowly into the json data, but can get complicated quickly as more objects/dictionaries are introduced) and adding more movie data and features.
 
 ## License
 
