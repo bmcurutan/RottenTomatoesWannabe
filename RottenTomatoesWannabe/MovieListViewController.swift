@@ -153,11 +153,6 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"movieCell") as! MovieCell
-
-        // Customize cell selection style
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red:0.34, green:0.41, blue:0.18, alpha:0.5)
-        cell.selectedBackgroundView = backgroundView
         
         if let movies = self.filteredMovies {
             let movie = movies[indexPath.row]
