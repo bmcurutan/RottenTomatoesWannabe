@@ -20,6 +20,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var infoView: UIView!
     
     var movie: Movie!
+    var poster: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class MovieDetailsViewController: UIViewController {
                     // Default to low res image
                     self.posterImageView.alpha = 0.0
                     self.posterImageView.image = smallImage;
+                    self.poster = smallImage
                     
                     UIView.animate(withDuration: 0.5, animations: { () -> Void in
                         self.posterImageView.alpha = 1.0
@@ -47,6 +49,7 @@ class MovieDetailsViewController: UIViewController {
                             self.posterImageView.setImageWith(largeImageRequest as URLRequest, placeholderImage: smallImage, success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
                                     // Show HD image if available
                                     self.posterImageView.image = largeImage;
+                                    self.poster = largeImage
                                 },
                                 
                                 failure: { (request, response, error) -> Void in
@@ -56,6 +59,7 @@ class MovieDetailsViewController: UIViewController {
                                         success: { (imageRequest, imageResponse, image) -> Void in
                                             // Display normal res image if HD image fetch fails
                                             self.posterImageView.image = image;
+                                            self.poster = image
                                         },
                                         
                                         failure: { (request, response, error) -> Void in
@@ -69,6 +73,7 @@ class MovieDetailsViewController: UIViewController {
                     self.posterImageView.setImageWith(largeImageRequest as URLRequest, placeholderImage: UIImage(named:"no_poster"), success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
                             // Display the HD image immediately if the low res image fails and if the HD image is available
                             self.posterImageView.image = largeImage;
+                            self.poster = largeImage
                         },
                                                       
                         failure: { (request, response, error) -> Void in
@@ -78,6 +83,7 @@ class MovieDetailsViewController: UIViewController {
                                 success: { (imageRequest, imageResponse, image) -> Void in
                                     // Otherwise display the normal res image
                                     self.posterImageView.image = image;
+                                    self.poster = image
                                 },
                                 failure: { (request, response, error) -> Void in
                                     // Print error - only the placeholder image is available in the meantime
@@ -131,6 +137,6 @@ class MovieDetailsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let photoViewController = segue.destination as! PhotoViewController
-            photoViewController.movie = movie
+            photoViewController.poster = self.poster
     }
 }
