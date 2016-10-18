@@ -10,13 +10,13 @@ import UIKit
 
 struct Constants {
     
-    static let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-    static let baseUrl = "https://image.tmdb.org/t/p/"
-    static let movieDbUrl = "https://api.themoviedb.org/3/"
+    static let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed" // Provided by CodePath
+    static let baseUrl = "https://image.tmdb.org/t/p/" // Base URL for poster images
+    static let movieDbUrl = "https://api.themoviedb.org/3/" // Base URL for movies database list
     
     // For poster
-    static let smallSize = "w45"
-    static let normalSize = "w342"
-    static let largeSize = "original"
+    static let smallSize = "w45" // Used for low res images
+    static let normalSize = "w342" // Used for normal res images
+    static let largeSize = "original" // Used for HD images
 
 }

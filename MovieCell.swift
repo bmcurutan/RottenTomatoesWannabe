@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Used in MovieListViewController
 class MovieCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!

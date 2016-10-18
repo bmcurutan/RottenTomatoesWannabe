@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        // Customize Navigation bar
+        // Customize Navigation bar colours
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.tintColor = UIColor.white
         navigationBarAppearance.barTintColor = UIColor(red:0.45, green:0.54, blue:0.23, alpha:1.0)
         
-        // Create Tab bar
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        // Now Playing tab
         let nowPlayingNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MovieListViewController
         nowPlayingViewController.typeEndpoint = "now_playing"
@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "now_playing")
         
+        // Top Rated tab
         let topRatedNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
         let topRatedViewController = topRatedNavigationController.topViewController as! MovieListViewController
         topRatedViewController.typeEndpoint = "top_rated"
@@ -38,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         topRatedNavigationController.tabBarItem.title = "Top Rated"
         topRatedNavigationController.tabBarItem.image = UIImage(named: "top_rated")
 
+        // Upcoming tab
         let upcomingNavigationController = storyboard.instantiateViewController(withIdentifier: "moviesNavigationController") as! UINavigationController
         let upcomingViewController = upcomingNavigationController.topViewController as! MovieListViewController
         upcomingViewController.typeEndpoint = "upcoming"
@@ -45,10 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         upcomingNavigationController.tabBarItem.title = "Upcoming"
         upcomingNavigationController.tabBarItem.image = UIImage(named: "upcoming")
         
+        // Create Tab bar
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController, upcomingNavigationController]
         
-        // Customize Tab bar
+        // Customize Tab bar colours
         let tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.tintColor = UIColor.white
         tabBarAppearance.barTintColor = UIColor(red:0.45, green:0.54, blue:0.23, alpha:1.0)

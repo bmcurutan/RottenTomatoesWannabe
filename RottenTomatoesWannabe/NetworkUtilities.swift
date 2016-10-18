@@ -14,7 +14,7 @@ class NetworkUtilities {
     // Singleton instance
     static let sharedInstance = NetworkUtilities()
     
-    func fetchDataWithUrl(url: String, completion: @escaping ([Movie]) -> Void, errorCallback: ((NSError?) -> Void)?) {
+    func fetchDataWithUrl(url: String, successCallback: @escaping ([Movie]) -> Void, errorCallback: ((NSError?) -> Void)?) {
         let url = URL(string:url)
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -29,7 +29,7 @@ class NetworkUtilities {
             } else {
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                        var json: [Movie] = []
+                        var json: [Movie] = [] // Array of movie objects
                         for dict in responseDictionary["results"] as! [NSDictionary] {
                             let movie = Movie()
                             if let id = dict["id"] as? Int {
@@ -59,7 +59,7 @@ class NetworkUtilities {
                             
                             json.append(movie)
                         }
-                        completion(json)
+                        successCallback(json)
                     }
                 }
             }
